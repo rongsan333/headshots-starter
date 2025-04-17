@@ -2,12 +2,12 @@ export const config = {
   packQueryType: process.env.PACK_QUERY_TYPE as 'users' | 'gallery' | 'both',
   tuneType: process.env.NEXT_PUBLIC_TUNE_TYPE as 'packs' | 'tune',
   stripeEnabled: process.env.NEXT_PUBLIC_STRIPE_IS_ENABLED === 'true',
-  vercelUrl: process.env.DEPLOYMENT_URL,
+  deploymentUrl: process.env.DEPLOYMENT_URL,
 } as const;
 
 function isVercelPreviewUrl(url: string): boolean {
-  return url.includes('.vercel.app') && 
-    (url.includes('-git-') || 
+  return url.includes('.vercel.app') &&
+    (url.includes('-git-') ||
      url.match(/-[a-f0-9]{8,}\.vercel\.app/i) !== null);
 }
 
@@ -27,8 +27,8 @@ export function validateConfig() {
     throw new Error('Invalid NEXT_PUBLIC_STRIPE_IS_ENABLED value');
   }
 
-  // Add Vercel URL validation
-  if (config.vercelUrl && isVercelPreviewUrl(config.vercelUrl)) {
+  // Add Deployment URL validation
+  if (config.deploymentUrl && isVercelPreviewUrl(config.deploymentUrl)) {
     throw new Error(
       'Invalid DEPLOYMENT_URL: Preview URLs cannot be used for webhooks.\n' +
       'Please use either:\n' +

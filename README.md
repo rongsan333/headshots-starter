@@ -22,6 +22,10 @@ PACK_QUERY_TYPE=both
 ![Headshot AI Packs](assets/headshots-packs.png)
 Here is how it looks
 
+## Important Environment Variable Change
+
+**Note:** The environment variable `VERCEL_URL` has been renamed to `DEPLOYMENT_URL` for consistency across the codebase. If you're updating from a previous version, please update your environment variables accordingly. This change makes the application more platform-agnostic and clearer for deployments on any hosting provider, not just Vercel.
+
 ## How It Works
 
 Live demo **[here](https://getheadshots.ai)**.
@@ -112,7 +116,7 @@ In your `.env.local` file:
 
 - Fill in `your_api_key` with your [Astria API key](https://www.astria.ai/users/edit#api)
 - Fill in `your-webhook-secret` with any arbitrary URL friendly string eg.`shadf892yr398hq23h`
-- Fill in `your-vercel-url` with a url to catch webhooks from Astria. This will be your vercel deployment url or Ngrok tunnel locally (eg. https://{your-hosted-url}/astria/train-webhook)
+- Fill in `your-deployment-url` with a url to catch webhooks from Astria. This will be your vercel deployment url or Ngrok tunnel locally (eg. https://{your-hosted-url}/astria/train-webhook)
 - Fill in `your-blob-read-write-token` with your Vercel Blob token (steps below)
 
 If your production webhook callbacks do not seem to be working, make sure the callback URL is not of a Vercel dedicated branch deployment which requires authentication, in which case you will not see the callback in the logs.
